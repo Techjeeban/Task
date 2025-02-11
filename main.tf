@@ -5,9 +5,9 @@ resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
 resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
-  map_public_ip_on_launch = true  # Ensure instances in this subnet get a public IP
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = "10.0.1.0/24"
+  map_public_ip_on_launch = true # Ensure instances in this subnet get a public IP
 }
 
 resource "aws_internet_gateway" "igw" {
@@ -28,11 +28,11 @@ resource "aws_route_table_association" "rta" {
   route_table_id = aws_route_table.rt.id
 }
 resource "aws_instance" "web" {
-  ami           = "ami-0c50b6f7dc3701ddd"
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.subnet.id
-  key_name      = "taskkey"
-  associate_public_ip_address = true  # Ensure the instance gets a public IP
+  ami                         = "ami-0c50b6f7dc3701ddd"
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.subnet.id
+  key_name                    = "taskkey"
+  associate_public_ip_address = true # Ensure the instance gets a public IP
 
   tags = {
     Name = "TerraformTask"
