@@ -25,19 +25,25 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-west-2
 
+    - name: Run terraform fmt
+      run: terraform fmt
+
+    - name: Check Terraform formatting
+      run: terraform fmt -check
+
     - name: Initialize Terraform
       run: terraform init
 
     - name: Apply Terraform
       run: terraform apply -auto-approve
-      #Create again
-destroy:
+
+  destroy:
     runs-on: ubuntu-latest
     needs: terraform
 
     steps:
     - name: Checkout code
-       2
+     2
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
