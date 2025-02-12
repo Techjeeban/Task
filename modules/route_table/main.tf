@@ -6,7 +6,3 @@ resource "aws_route_table" "rt" {
     gateway_id = var.gateway_id
   }
 }
-
-output "rt_id" {
-  value = aws_route_table.rt.id
-}
